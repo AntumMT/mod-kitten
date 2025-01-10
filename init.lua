@@ -130,15 +130,15 @@ mobs:register_mob("mobs:kitten", {
 
 if not mobs.custom_spawn_animal then
 
-	local spawn_on = "default:dirt_with_grass"
+	local spawn_on = {"default:dirt_with_grass"}
 
 	if minetest.get_modpath("ethereal") then
-		spawn_on = "ethereal:grove_dirt"
+		table.insert(spawn_on, "ethereal:grove_dirt")
 	end
 
 	mobs:spawn({
 		name = "mobs:kitten",
-		nodes = {spawn_on},
+		nodes = spawn_on,
 		neighbors = {"group:grass"},
 		min_light = 14,
 		interval = 60,
