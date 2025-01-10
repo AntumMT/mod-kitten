@@ -60,7 +60,8 @@ mobs:register_mob("mobs:kitten", {
 	},
 	follow = {
 		"mobs:rat", "group:food_fish_raw",
-		"mobs_fish:tropical", "mobs_fish:clownfish", "xocean:fish_edible"
+		"mobs_fish:tropical", "mobs_fish:clownfish", "xocean:fish_edible",
+		"creatures:chicken_flesh", "creatures:chicken_meat"
 	},
 	view_range = 8,
 
