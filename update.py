@@ -161,8 +161,16 @@ def updateConf():
 		elif li.startswith("description ="):
 			lines[idx] = "description = {}".format(mob_desc)
 		elif li.startswith("optional_depends ="):
-			if "asm_spawneggs" not in li.replace(" ", "").split("=")[1].split(","):
-				lines[idx] = lines[idx] + ", asm_spawneggs"
+			optional_depends = li.replace(" ", "").split("=")[1].split(",")
+			if "lucky_block" in optional_depends:
+				optional_depends.remove("lucky_block")
+			if "dye" not in optional_depends:
+				optional_depends.append("dye")
+			if "ethereal" not in optional_depends:
+				optional_depends.append("ethereal")
+			if "asm_spawneggs" not in optional_depends:
+				optional_depends.append("asm_spawneggs")
+			lines[idx] = "optional_depends = " + ", ".join(optional_depends)
 
 	fout = codecs.open("mod.conf", "w", "utf-8")
 	fout.write("\n".join(lines))
