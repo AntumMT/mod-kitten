@@ -22,6 +22,7 @@ upstream = "https://codeberg.org/tenplus1/mobs_animal"
 ref = "master"
 mob_name = "kitten"
 mob_title = "Kitten"
+mob_desc = "Adds a kitten."
 
 
 def getRefUrl(path):
@@ -157,6 +158,8 @@ def updateConf():
 		li = lines[idx]
 		if li.startswith("name ="):
 			lines[idx] = "name = {}".format(mob_name)
+		elif li.startswith("description ="):
+			lines[idx] = "description = {}".format(mob_desc)
 		elif li.startswith("optional_depends ="):
 			if "asm_spawneggs" not in li.replace(" ", "").split("=")[1].split(","):
 				lines[idx] = lines[idx] + ", asm_spawneggs"
