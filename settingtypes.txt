@@ -1,0 +1,1 @@
+mobs.kitten (Enable Kitten) bool true
