@@ -4,10 +4,10 @@ local hairball = minetest.settings:get("mobs_hairball")
 
 -- Kitten by Jordach / BFD
 
-mobs:register_mob("mobs_animal:kitten", {
+mobs:register_mob("mobs:kitten", {
 stepheight = 0.6,
 	type = "animal",
-specific_attack = {"mobs_animal:rat"},
+specific_attack = {"mobs:rat"},
 damage = 1,
 attack_type = "dogfight",
 attack_animals = true, -- so it can attack rat
@@ -53,7 +53,7 @@ stepheight = 1.1,
 		stoodup_end = 0,
 	},
 	follow = {
-		"mobs_animal:rat", "group:food_fish_raw",
+		"mobs:rat", "group:food_fish_raw",
 		"mobs_fish:tropical", "xocean:fish_edible"
 	},
 	view_range = 8,
@@ -117,7 +117,7 @@ end
 
 if not mobs.custom_spawn_animal then
 mobs:spawn({
-	name = "mobs_animal:kitten",
+	name = "mobs:kitten",
 	nodes = {spawn_on},
 	neighbors = {"group:grass"},
 	min_light = 14,
@@ -130,15 +130,13 @@ mobs:spawn({
 end
 
 
-mobs:register_egg("mobs_animal:kitten", S("Kitten"), "mobs_kitten_inv.png", 0)
 
 
-mobs:alias_mob("mobs:kitten", "mobs_animal:kitten") -- compatibility
 
 
 local hairball_items = {
 	"default:stick", "default:coal_lump", "default:dry_shrub", "flowers:rose",
-	"mobs_animal:rat", "default:grass_1", "farming:seed_wheat", "dye:green", "",
+	"mobs:rat", "default:grass_1", "farming:seed_wheat", "dye:green", "",
 	"farming:seed_cotton", "default:flint", "default:sapling", "dye:white", "",
 	"default:clay_lump", "default:paper", "default:dry_grass_1", "dye:red", "",
 	"farming:string", "mobs:chicken_feather", "default:acacia_bush_sapling", "",
@@ -172,3 +170,16 @@ minetest.register_craftitem(":mobs:hairball", {
 		return itemstack
 	end,
 })
+
+if core.global_exists("asm") then
+	asm.addEgg({
+		name = "kitten",
+		title = S("Kitten"),
+		inventory_image = "mobs_kitten_inv.png",
+		spawn = "mobs:kitten",
+		ingredients = "mobs:hairball",
+	})
+end
+core.register_alias("mobs:kitten", "spawneggs:kitten")
+
+mobs:alias_mob("mobs_animal:kitten", "mobs:kitten") -- compatibility
